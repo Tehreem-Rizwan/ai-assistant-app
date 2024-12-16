@@ -1,5 +1,5 @@
 import 'package:ai_assistant/screens/helper/global.dart';
-import 'package:ai_assistant/screens/home.dart';
+import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/model/onboard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,18 +39,18 @@ class OnBoardingScreen extends StatelessWidget {
                   ),
                   Text(list[ind].title,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           fontWeight: FontWeight.w900,
                           letterSpacing: 0.5)),
                   SizedBox(
                     height: mq.height * 0.015,
                   ),
                   SizedBox(
-                    width: mq.height * 0.07,
+                    height: mq.height * 0.07,
                     child: Text(list[ind].subtitle,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 13.5,
+                            fontSize: 16,
                             letterSpacing: 0.5,
                             color: Colors.black54)),
                   ),
@@ -71,6 +71,7 @@ class OnBoardingScreen extends StatelessWidget {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: StadiumBorder(),
+                          backgroundColor: Colors.blue,
                           elevation: 0,
                           textStyle: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.w500),
@@ -84,7 +85,10 @@ class OnBoardingScreen extends StatelessWidget {
                               curve: Curves.ease);
                         }
                       },
-                      child: Text(isLast ? "Finish" : "Next")),
+                      child: Text(
+                        isLast ? "Finish" : "Next",
+                        style: TextStyle(color: Colors.white),
+                      )),
                   Spacer(
                     flex: 2,
                   ),

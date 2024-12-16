@@ -1,5 +1,7 @@
 import 'package:ai_assistant/constants/app_images.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
+import 'package:ai_assistant/screens/helper/pref.dart';
+import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/onBoarding_screen.dart';
 import 'package:ai_assistant/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      Get.to(() => const OnBoardingScreen());
+      Get.off(() =>
+          Pref.showonBoarding ? const OnBoardingScreen() : const HomePage());
     });
   }
 
