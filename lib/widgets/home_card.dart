@@ -20,58 +20,55 @@ class HomeCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: mq.height * 0.02),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: homeType.leftAlign
-            ? Row(
-                children: [
-                  // Wrap the Lottie with Transform.scale to reduce its size
-                  Transform.scale(
-                    scale: homeType == HomeType.aiImage
-                        ? 0.7
-                        : 1.0, // Reduced size for AI Image
-                    child: SizedBox(
-                      width: mq.width * 0.3, // Keep the original width
-                      child: Lottie.asset("assets/lottie/${homeType.lottie}"),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      homeType.title,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
+        child: InkWell(
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+          onTap: homeType.OnTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: homeType.leftAlign
+                ? [
+                    Transform.scale(
+                      scale: homeType == HomeType.aiImage ? 0.7 : 1.0,
+                      child: SizedBox(
+                        width: mq.width * 0.3,
+                        child: Lottie.asset("assets/lottie/${homeType.lottie}"),
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ),
-                ],
-              )
-            : Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      homeType.title,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Text(
+                        homeType.title,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
                     ),
-                  ),
-                  // Wrap the Lottie with Transform.scale to reduce its size
-                  Transform.scale(
-                    scale: homeType == HomeType.aiImage
-                        ? 0.7
-                        : 1.0, // Reduced size for AI Image
-                    child: SizedBox(
-                      width: mq.width * 0.3, // Keep the original width
-                      child: Lottie.asset("assets/lottie/${homeType.lottie}"),
+                  ]
+                : [
+                    Expanded(
+                      child: Text(
+                        homeType.title,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          letterSpacing: 1,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                    Transform.scale(
+                      scale: homeType == HomeType.aiImage ? 0.7 : 1.0,
+                      child: SizedBox(
+                        width: mq.width * 0.3,
+                        child: Lottie.asset("assets/lottie/${homeType.lottie}"),
+                      ),
+                    ),
+                  ],
+          ),
+        ),
       ),
     ).animate().fade(duration: 1.seconds, curve: Curves.easeIn);
   }

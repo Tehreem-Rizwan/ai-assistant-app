@@ -23,7 +23,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appName,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        appBarTheme: AppBarTheme(
+          iconTheme: IconThemeData(color: Colors.blue),
+          elevation: 1,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+              color: Colors.blue, fontSize: 22, fontWeight: FontWeight.w500),
+        ),
         useMaterial3: true,
       ),
       home: SplashScreen(),
