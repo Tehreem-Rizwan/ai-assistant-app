@@ -17,7 +17,7 @@ class HomeCard extends StatelessWidget {
       ),
       color: Colors.blue.withOpacity(0.2),
       elevation: 0,
-      margin: EdgeInsets.only(bottom: mq.height * 0.02),
+      margin: EdgeInsets.only(bottom: mq.height * 0.01),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
