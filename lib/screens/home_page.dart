@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {},
               icon: Icon(Icons.brightness_4_rounded),
               color: Colors.blue,
-              iconSize: 26,
+              iconSize: 27,
             )
           ],
         ),
