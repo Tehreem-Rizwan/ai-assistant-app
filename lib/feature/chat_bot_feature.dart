@@ -1,6 +1,8 @@
 import 'package:ai_assistant/controllers/chat_controller.dart';
+import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/widgets/message_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class ChatBotFeature extends StatefulWidget {
@@ -74,6 +76,8 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
       ),
       body: Obx(
         () => ListView(
+          padding:
+              EdgeInsets.only(top: mq.height * 0.02, bottom: mq.height * 0.1),
           children: _c.list.map((e) => MessageCard(message: e)).toList(),
         ),
       ),
