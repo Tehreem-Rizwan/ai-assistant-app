@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
               iconSize: 27,
             )
           ],
-        ),
+        ), //app bar
         backgroundColor: Colors.white,
         body: ListView(
           padding: EdgeInsets.symmetric(
