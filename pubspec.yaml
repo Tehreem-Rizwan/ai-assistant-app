@@ -45,6 +45,9 @@ dependencies:
   http: ^1.2.2
   google_generative_ai: ^0.4.6
   translator_plus: ^1.0.1
+  animated_text_kit: ^4.2.2
+  dart_openai: ^5.1.0
+  cached_network_image: ^3.4.0
 
 dev_dependencies:
   flutter_test:

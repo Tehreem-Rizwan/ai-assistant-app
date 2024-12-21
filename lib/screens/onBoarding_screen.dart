@@ -1,6 +1,7 @@
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/model/onboard.dart';
+import 'package:ai_assistant/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -68,27 +69,18 @@ class OnBoardingScreen extends StatelessWidget {
                                         BorderRadius.all(Radius.circular(5))),
                               ))),
                   Spacer(),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: StadiumBorder(),
-                          backgroundColor: Colors.blue,
-                          elevation: 0,
-                          textStyle: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                          minimumSize: Size(mq.width * 0.4, 50)),
-                      onPressed: () {
-                        if (isLast) {
-                          Get.to(() => HomePage());
-                        } else {
-                          controller.nextPage(
-                              duration: Duration(milliseconds: 600),
-                              curve: Curves.ease);
-                        }
-                      },
-                      child: Text(
-                        isLast ? "Finish" : "Next",
-                        style: TextStyle(color: Colors.white),
-                      )),
+                  CustomButton(
+                    onTap: () {
+                      if (isLast) {
+                        Get.to(() => HomePage());
+                      } else {
+                        controller.nextPage(
+                            duration: Duration(milliseconds: 600),
+                            curve: Curves.ease);
+                      }
+                    },
+                    text: isLast ? "Finish" : "Next",
+                  ),
                   Spacer(
                     flex: 2,
                   ),

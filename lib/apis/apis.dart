@@ -7,7 +7,6 @@ class APIs {
   static Future<String> getAnswer(String question) async {
     try {
       log('api key: $apiKey');
-      print('api key: $apiKey');
 
       final model = GenerativeModel(
         model: 'gemini-2.0-flash-exp',
@@ -23,7 +22,6 @@ class APIs {
       ]);
 
       log('res: ${res.text}');
-      print('res: ${res.text}');
 
       return res.text!;
     } catch (e) {

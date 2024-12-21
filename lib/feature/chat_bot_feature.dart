@@ -17,7 +17,6 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
 
   @override
   void dispose() {
-    // Ensure the controller is disposed properly
     _c.dispose();
     super.dispose();
   }
@@ -26,7 +25,10 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat with AI Assistant'),
+        title: Text(
+          'Chat with AI Assistant',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Row(
@@ -40,6 +42,8 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
                 controller: _c.textC,
                 onTapOutside: (e) => FocusScope.of(context).unfocus(),
                 decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
                   hintText: "Ask me Anything you want...",
                   hintStyle: const TextStyle(fontSize: 14),
                   isDense: true,
@@ -60,10 +64,10 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
               ),
             ),
           ),
-          const SizedBox(width: 7),
+          const SizedBox(width: 6),
           CircleAvatar(
             backgroundColor: Colors.blue,
-            radius: 24,
+            radius: 21,
             child: IconButton(
               onPressed: _c.askQuestion,
               icon: const Icon(
@@ -76,6 +80,8 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
       ),
       body: Obx(
         () => ListView(
+          physics: const BouncingScrollPhysics(),
+          controller: _c.scrollC,
           padding:
               EdgeInsets.only(top: mq.height * 0.02, bottom: mq.height * 0.1),
           children: _c.list.map((e) => MessageCard(message: e)).toList(),

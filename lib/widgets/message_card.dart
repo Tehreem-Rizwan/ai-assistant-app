@@ -2,6 +2,7 @@ import 'package:ai_assistant/constants/app_images.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/model/message.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class MessageCard extends StatelessWidget {
   final Message message;
@@ -24,6 +25,7 @@ class MessageCard extends StatelessWidget {
                     width: 24,
                   )),
               Container(
+                constraints: BoxConstraints(maxWidth: mq.width * 0.6),
                 margin: EdgeInsets.only(
                     bottom: mq.height * 0.02, left: mq.width * 0.02),
                 padding: EdgeInsets.symmetric(
@@ -32,7 +34,20 @@ class MessageCard extends StatelessWidget {
                     border: Border.all(color: Colors.black54),
                     borderRadius: BorderRadius.only(
                         topLeft: r, topRight: r, bottomRight: r)),
-                child: Text(message.msg),
+                child: message.msg.isEmpty
+                    ? AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            ' Please wait... ',
+                            speed: const Duration(milliseconds: 100),
+                          ),
+                        ],
+                        repeatForever: true,
+                      )
+                    : Text(
+                        message.msg,
+                        textAlign: TextAlign.center,
+                      ),
               )
             ],
           )
@@ -40,6 +55,7 @@ class MessageCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
+                constraints: BoxConstraints(maxWidth: mq.width * 0.6),
                 margin: EdgeInsets.only(
                     bottom: mq.height * 0.02, right: mq.width * 0.02),
                 padding: EdgeInsets.symmetric(
@@ -48,7 +64,10 @@ class MessageCard extends StatelessWidget {
                     border: Border.all(color: Colors.black54),
                     borderRadius: BorderRadius.only(
                         topLeft: r, topRight: r, bottomLeft: r)),
-                child: Text(message.msg),
+                child: Text(
+                  message.msg,
+                  textAlign: TextAlign.center,
+                ),
               ),
               CircleAvatar(
                   radius: 18,
