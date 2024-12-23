@@ -50,9 +50,11 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.symmetric(
               horizontal: mq.width * 0.04, vertical: mq.height * 0.015),
           children: HomeType.values
-              .map((e) => HomeCard(
-                    homeType: e,
-                  ))
+              .map(
+                (e) => HomeCard(
+                  homeType: e,
+                ),
+              )
               .toList(),
         )).animate().fade(duration: 1.seconds);
   }

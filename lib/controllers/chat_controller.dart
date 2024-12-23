@@ -2,6 +2,7 @@ import 'package:ai_assistant/apis/apis.dart';
 import 'package:ai_assistant/screens/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ai_assistant/screens/helper/my_dialogue.dart';
 
 class ChatController extends GetxController {
   final TextEditingController textC = TextEditingController();
@@ -20,6 +21,8 @@ class ChatController extends GetxController {
       list.add(Message(msg: res, msgType: MessageType.bot));
       _scrollDown();
       textC.text = "";
+    } else {
+      MyDialog.info("Ask Something");
     }
   }
 
