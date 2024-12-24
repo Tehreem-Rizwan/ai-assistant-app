@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:http/http.dart';
+import 'package:translator_plus/translator_plus.dart';
 
 class APIs {
   static Future<String> getAnswer(String question) async {
@@ -41,6 +42,18 @@ class APIs {
     } catch (e) {
       log('searchAiImagesE: $e');
       return [];
+    }
+  }
+
+  static Future<String> googleTranslate(
+      {required String from, required String to, required String text}) async {
+    try {
+      final res = await GoogleTranslator().translate(text, from: from, to: to);
+
+      return res.text;
+    } catch (e) {
+      log('googleTranslateE: $e ');
+      return 'Something went wrong!';
     }
   }
 }
