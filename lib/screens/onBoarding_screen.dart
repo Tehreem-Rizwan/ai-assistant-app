@@ -1,3 +1,4 @@
+import 'package:ai_assistant/main.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/model/onboard.dart';
@@ -53,7 +54,7 @@ class OnBoardingScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 16,
                             letterSpacing: 0.5,
-                            color: Colors.black54)),
+                            color: Theme.of(context).lightTextColor)),
                   ),
                   Spacer(),
                   Wrap(

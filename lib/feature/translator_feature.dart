@@ -90,37 +90,9 @@ class _TranslatorFeatureState extends State<TranslatorFeature> {
                         borderRadius: BorderRadius.all(Radius.circular(10)))),
               ),
             ),
-            // if (_c.resultC.text.isNotEmpty)
-            //   Padding(
-            //     padding: EdgeInsets.symmetric(horizontal: mq.width * 0.04),
-            //     child: TextFormField(
-            //       controller: _c.resultC,
-            //       //    minLines: 5,
-            //       maxLines: null,
-            //       onTapOutside: (e) => FocusScope.of(context).unfocus(),
-            //       decoration: InputDecoration(
-            //         filled: true,
-            //         fillColor: Colors.white,
-            //         isDense: true,
-            //         border: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10),
-            //         ),
-            //         enabledBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10),
-            //           borderSide:
-            //               const BorderSide(color: Colors.blue, width: 1.5),
-            //         ),
-            //         focusedBorder: OutlineInputBorder(
-            //           borderRadius: BorderRadius.circular(10),
-            //           borderSide:
-            //               const BorderSide(color: Colors.blue, width: 2.0),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
             Obx(() => _translateResult()),
             SizedBox(height: mq.height * 0.04),
-            CustomButton(onTap: () {}, text: "Translate")
+            CustomButton(onTap: _c.googleTranslate, text: "Translate")
           ],
         ));
   }

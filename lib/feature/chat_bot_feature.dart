@@ -1,4 +1,5 @@
 import 'package:ai_assistant/controllers/chat_controller.dart';
+import 'package:ai_assistant/main.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/widgets/message_card.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
                 controller: _c.textC,
                 onTapOutside: (e) => FocusScope.of(context).unfocus(),
                 decoration: InputDecoration(
-                  fillColor: Colors.white,
+                  fillColor: Theme.of(context).scaffoldBackgroundColor,
                   filled: true,
                   hintText: "Ask me Anything you want...",
                   hintStyle: const TextStyle(fontSize: 14),
@@ -66,7 +67,7 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
           ),
           const SizedBox(width: 6),
           CircleAvatar(
-            backgroundColor: Colors.blue,
+            backgroundColor: Theme.of(context).buttonColor,
             radius: 21,
             child: IconButton(
               onPressed: _c.askQuestion,

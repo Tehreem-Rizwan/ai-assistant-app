@@ -27,20 +27,14 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
         appBar: AppBar(
-          elevation: 1,
-          centerTitle: true,
-          backgroundColor: Colors.white,
           title: Text(
             appName,
-            style: TextStyle(
-                color: Colors.blue, fontSize: 22, fontWeight: FontWeight.w500),
           ),
           actions: [
             IconButton(
               padding: EdgeInsets.only(right: 10),
               onPressed: () {},
               icon: Icon(Icons.brightness_4_rounded),
-              color: Colors.blue,
               iconSize: 27,
             )
           ],

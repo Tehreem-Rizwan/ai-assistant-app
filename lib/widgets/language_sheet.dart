@@ -33,9 +33,7 @@ class _LanguageSheetState extends State<LanguageSheet> {
       child: Column(
         children: [
           TextFormField(
-            // controller: _c.resultC,
             onChanged: (s) => _search.value = s.toLowerCase(),
-
             onTapOutside: (e) => FocusScope.of(context).unfocus(),
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.translate_rounded, color: Colors.blue),
