@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    Pref.showonBoarding = false;
+    // Pref.showonBoarding = false;
   }
 
   @override
