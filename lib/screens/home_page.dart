@@ -14,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _isDarkMode = Get.isDarkMode.obs; //bug fix
+  final _isDarkMode = Get.isDarkMode.obs;
 
   @override
   void initState() {
@@ -25,14 +25,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //initializing device size
     mq = MediaQuery.sizeOf(context);
 
-    //sample api call
-    // APIs.getAnswer('hii');
-
     return Scaffold(
-      //app bar
       appBar: AppBar(
         title: const Text(appName),
 
@@ -54,8 +49,6 @@ class _HomePageState extends State<HomePage> {
                   size: 26)))
         ],
       ),
-
-      //body
       body: ListView(
         padding: EdgeInsets.symmetric(
             horizontal: mq.width * .04, vertical: mq.height * .015),

@@ -8,8 +8,7 @@ import 'package:get/get.dart';
 class AdHelper {
   static void init() {
     EasyAudienceNetwork.init(
-      testMode:
-          true, // for testing purpose but comment it before making the app live
+      testMode: true,
     );
   }
 
@@ -26,7 +25,6 @@ class AdHelper {
     }, onDismissed: () {
       interstitialAd.destroy();
     }, onError: (i, e) {
-      //hide loading
       Get.back();
       onComplete();
 

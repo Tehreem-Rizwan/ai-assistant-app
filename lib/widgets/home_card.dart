@@ -1,3 +1,4 @@
+import 'package:ai_assistant/screens/helper/ad_helper.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/model/home_type.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class HomeCard extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          onTap: homeType.OnTap,
+          onTap: () => AdHelper.showInterstitialAd((homeType.OnTap)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: homeType.leftAlign
