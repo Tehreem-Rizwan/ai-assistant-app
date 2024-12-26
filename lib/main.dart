@@ -1,3 +1,4 @@
+import 'package:ai_assistant/apis/app_write.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
 import 'package:ai_assistant/screens/splash_screen.dart';
@@ -7,7 +8,8 @@ import 'package:get/get.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Pref.initialize();
+  await Pref.initialize();
+  AppWrite.init();
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -21,9 +23,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: Pref.defaultTheme,
       title: appName,
       darkTheme: ThemeData(
+        useMaterial3: false,
         brightness: Brightness.dark,
         appBarTheme: AppBarTheme(
           iconTheme: IconThemeData(color: Colors.blue),
@@ -31,7 +34,6 @@ class MyApp extends StatelessWidget {
           centerTitle: true,
           titleTextStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
         ),
-        useMaterial3: true,
       ),
       theme: ThemeData(
         appBarTheme: AppBarTheme(
@@ -53,5 +55,5 @@ extension AppName on ThemeData {
   Color get lightTextColor =>
       brightness == Brightness.dark ? Colors.white70 : Colors.black54;
   Color get buttonColor =>
-      brightness == Brightness.dark ? Colors.cyan : Colors.blue;
+      brightness == Brightness.dark ? Colors.cyan.withOpacity(.5) : Colors.blue;
 }

@@ -67,25 +67,12 @@ class _ImageFeatureState extends State<ImageFeature> {
               minLines: 2,
               maxLines: null,
               onTapOutside: (e) => FocusScope.of(context).unfocus(),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText:
-                    "Imagine something wonderful and innovative \n  Type here and i will create for you 😄",
-                hintStyle: const TextStyle(fontSize: 14),
-                isDense: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.blue, width: 1.5),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.blue, width: 2.0),
-                ),
-              ),
+              decoration: const InputDecoration(
+                  hintText:
+                      'Imagine something wonderful & innovative\nType here & I will create for you 😃',
+                  hintStyle: TextStyle(fontSize: 13.5),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10)))),
             ),
             Container(
                 height: mq.height * 0.5,

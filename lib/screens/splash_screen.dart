@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
       Get.off(() =>
-          Pref.showonBoarding ? const OnBoardingScreen() : const HomePage());
+          Pref.showOnboarding ? const OnBoardingScreen() : const HomePage());
     });
   }
 

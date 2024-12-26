@@ -4,7 +4,7 @@ import 'package:ai_assistant/screens/model/home_type.dart';
 import 'package:ai_assistant/widgets/home_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,42 +14,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _isDarkMode = Get.isDarkMode.obs; //bug fix
+
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-    // Pref.showonBoarding = false;
+    Pref.showOnboarding = false;
   }
 
   @override
   Widget build(BuildContext context) {
+    //initializing device size
     mq = MediaQuery.sizeOf(context);
 
+    //sample api call
+    // APIs.getAnswer('hii');
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            appName,
-          ),
-          actions: [
-            IconButton(
-              padding: EdgeInsets.only(right: 10),
-              onPressed: () {},
-              icon: Icon(Icons.brightness_4_rounded),
-              iconSize: 27,
-            )
-          ],
-        ), //app bar
-        backgroundColor: Colors.white,
-        body: ListView(
-          padding: EdgeInsets.symmetric(
-              horizontal: mq.width * 0.04, vertical: mq.height * 0.015),
-          children: HomeType.values
-              .map(
-                (e) => HomeCard(
-                  homeType: e,
-                ),
-              )
-              .toList(),
-        )).animate().fade(duration: 1.seconds);
+      //app bar
+      appBar: AppBar(
+        title: const Text(appName),
+
+        //
+        actions: [
+          IconButton(
+              padding: const EdgeInsets.only(right: 10),
+              onPressed: () {
+                Get.changeThemeMode(
+                    _isDarkMode.value ? ThemeMode.light : ThemeMode.dark);
+
+                _isDarkMode.value = !_isDarkMode.value;
+                Pref.isDarkMode = _isDarkMode.value;
+              },
+              icon: Obx(() => Icon(
+                  _isDarkMode.value
+                      ? Icons.brightness_2_rounded
+                      : Icons.brightness_5_rounded,
+                  size: 26)))
+        ],
+      ),
+
+      //body
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+            horizontal: mq.width * .04, vertical: mq.height * .015),
+        children: HomeType.values.map((e) => HomeCard(homeType: e)).toList(),
+      ),
+    );
   }
 }
