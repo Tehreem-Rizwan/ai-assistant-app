@@ -1,17 +1,13 @@
-import 'package:ai_assistant/apis/app_write.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
 import 'package:ai_assistant/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:ai_assistant/screens/helper/ad_helper.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Pref.initialize();
-  AppWrite.init();
-  AdHelper.init();
   await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

@@ -92,7 +92,14 @@ class _TranslatorFeatureState extends State<TranslatorFeature> {
             ),
             Obx(() => _translateResult()),
             SizedBox(height: mq.height * 0.04),
-            CustomButton(onTap: _c.googleTranslate, text: "Translate")
+            CustomButton(
+              onTap: _c.googleTranslate,
+              text: "Translate",
+              height: 52,
+              textSize: 16,
+              backgroundColor: Colors.blue,
+              width: 140,
+            )
           ],
         ));
   }

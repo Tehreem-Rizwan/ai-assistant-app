@@ -81,6 +81,10 @@ class OnBoardingScreen extends StatelessWidget {
                       }
                     },
                     text: isLast ? "Finish" : "Next",
+                    height: 52,
+                    textSize: 16,
+                    backgroundColor: Colors.blue,
+                    width: 150,
                   ),
                   Spacer(
                     flex: 2,

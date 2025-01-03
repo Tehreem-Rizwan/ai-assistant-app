@@ -109,6 +109,10 @@ class _ImageFeatureState extends State<ImageFeature> {
             CustomButton(
               text: "Create",
               onTap: _c.searchAiImage,
+              height: 52,
+              textSize: 16,
+              backgroundColor: Colors.blue,
+              width: 140,
             )
           ],
         ));
