@@ -1,7 +1,7 @@
 import 'package:ai_assistant/constants/app_images.dart';
+import 'package:ai_assistant/screens/auth/signin_screen.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
-import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/onBoarding_screen.dart';
 import 'package:ai_assistant/widgets/custom_loading.dart';
 import 'package:flutter/material.dart';
@@ -19,8 +19,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 5), () {
-      Get.off(() =>
-          Pref.showOnboarding ? const OnBoardingScreen() : const HomePage());
+      Get.off(() => Pref.showOnboarding
+          ? const OnBoardingScreen()
+          : SigninScreen(
+              userEmail: 'tehreemrizwan30@gmail.com',
+            ));
     });
   }
 

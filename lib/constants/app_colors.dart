@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xff000000);
 const kSecondaryColor = Color(0xffFFFFFF);
-const kTertiaryColor = Color(0xffFE8C00);
+const kTertiaryColor = Colors.blue;
 const kLightGreyBackground = Color(0xfff5f6fa);
 const kGreyColor = Colors.grey;
-
 const kWhiteColor = Color(0xffFFFFFF);
 const kWhite38Color = Color(0xffC2C2C2);
 const kWhite12Color = Color(0xFFEDEDED);

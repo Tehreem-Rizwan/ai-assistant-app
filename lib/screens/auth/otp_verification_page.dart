@@ -63,6 +63,7 @@ class OtpVerificationPage extends StatelessWidget {
             Row(
               children: [
                 OtpInputField(controller: otpController),
+                OtpInputField(controller: otpController),
               ],
             ),
             SizedBox(height: 16),

@@ -1,6 +1,7 @@
 import 'package:ai_assistant/constants/app_colors.dart';
 import 'package:ai_assistant/constants/app_fonts.dart';
 import 'package:ai_assistant/constants/app_styling.dart';
+import 'package:ai_assistant/screens/auth/forgot_password_screen.dart';
 import 'package:ai_assistant/screens/auth/forgot_password_selection.dart';
 import 'package:ai_assistant/screens/auth/registration_Screen.dart';
 import 'package:ai_assistant/screens/home_page.dart';
@@ -113,38 +114,12 @@ class _SigninScreenState extends State<SigninScreen> {
               SizedBox(height: h(context, 16)),
               GestureDetector(
                 onTap: () {
-                  // Use widget.userEmail instead of userEmail
-                  if (widget.userEmail.isNotEmpty) {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (BuildContext context) {
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          width: double.infinity,
-                          height: h(context, 420), // Adjust height as needed
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(h(context, 28)),
-                              topRight: Radius.circular(h(context, 28)),
-                            ),
-                            color: kSecondaryColor,
-                          ),
-                          child: ForgotPasswordSelection(
-                              userEmail: widget.userEmail), // Correct usage
-                        );
-                      },
-                    );
-                  } else {
-                    // Handle the case where userEmail is null or empty
-                    print("No user email available.");
-                  }
+                  Get.to(() => ForgotPasswordPage());
                 },
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: CustomText(
-                    text: "Forgot Password",
+                    text: "Forgot Password?",
                     fontFamily: AppFonts.Inter,
                     size: 14,
                     weight: FontWeight.w500,

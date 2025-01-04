@@ -1,4 +1,5 @@
 import 'package:ai_assistant/main.dart';
+import 'package:ai_assistant/screens/auth/signin_screen.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/screens/model/onboard.dart';
@@ -73,7 +74,9 @@ class OnBoardingScreen extends StatelessWidget {
                   CustomButton(
                     onTap: () {
                       if (isLast) {
-                        Get.to(() => HomePage());
+                        Get.to(() => SigninScreen(
+                              userEmail: 'tehreemrizwan30@gmail.com',
+                            ));
                       } else {
                         controller.nextPage(
                             duration: Duration(milliseconds: 600),

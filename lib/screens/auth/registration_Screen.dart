@@ -36,7 +36,7 @@ class RegistrationScreen extends StatelessWidget {
               SizedBox(height: h(context, 8)),
               CustomText(
                 text:
-                    'Create an account to start looking for the food\nyou like',
+                    'Create an account to start looking for the AI\nAssistant',
                 size: 14,
                 weight: FontWeight.w500,
                 color: kgreyblackColor,

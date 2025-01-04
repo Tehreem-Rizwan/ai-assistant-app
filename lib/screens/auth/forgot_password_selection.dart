@@ -3,6 +3,7 @@ import 'package:ai_assistant/constants/app_fonts.dart';
 import 'package:ai_assistant/constants/app_images.dart';
 import 'package:ai_assistant/screens/auth/forgot_password_screen.dart';
 import 'package:ai_assistant/screens/auth/phone_number_auth.dart';
+import 'package:ai_assistant/screens/auth/succcess_screen.dart';
 import 'package:ai_assistant/widgets/Custom_text_widget.dart';
 import 'package:ai_assistant/widgets/custom_button.dart';
 import 'package:ai_assistant/widgets/custom_contact_details_forgot_password.dart';
@@ -97,7 +98,7 @@ class _ForgotPasswordSelectionState extends State<ForgotPasswordSelection> {
                 backgroundColor: Colors.blue,
                 onTap: () {
                   if (selectedOption == 'Send via SMS') {
-                    Get.to(() => SendCodePhoneno());
+                    Get.to(() => SuccessPage());
                     //  Navigator.push(
                     // context,
                     // MaterialPageRoute(

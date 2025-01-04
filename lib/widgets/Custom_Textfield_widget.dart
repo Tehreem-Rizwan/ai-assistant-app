@@ -136,7 +136,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: kSecondaryColor,
+        color: kGreyLightColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: kWhite12Color),
       ),
