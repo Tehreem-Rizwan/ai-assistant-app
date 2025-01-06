@@ -2,6 +2,7 @@ import 'package:ai_assistant/controllers/chat_controller.dart';
 import 'package:ai_assistant/main.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/widgets/message_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -15,6 +16,14 @@ class ChatBotFeature extends StatefulWidget {
 
 class _ChatBotFeatureState extends State<ChatBotFeature> {
   final _c = ChatController();
+  void _saveHistory(String query, String result) {
+    FirebaseFirestore.instance.collection('history').add({
+      'query': query,
+      'featureType': 'chatbot',
+      'result': result,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+  }
 
   @override
   void dispose() {
@@ -38,7 +47,7 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
             padding: const EdgeInsets.only(left: 5.0),
             child: SizedBox(
               width: MediaQuery.of(context).size.width *
-                  0.85, // Adjust percentage for desired width
+                  0.85, // Using MediaQuery directly
               child: TextFormField(
                 controller: _c.textC,
                 onTapOutside: (e) => FocusScope.of(context).unfocus(),
@@ -70,7 +79,11 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
             backgroundColor: Theme.of(context).buttonColor,
             radius: 21,
             child: IconButton(
-              onPressed: _c.askQuestion,
+              onPressed: () {
+                final query = _c.textC.text;
+                _c.askQuestion();
+                _saveHistory(query, ""); // Save the history
+              },
               icon: const Icon(
                 Icons.rocket_launch_rounded,
                 color: Colors.white,
@@ -83,8 +96,12 @@ class _ChatBotFeatureState extends State<ChatBotFeature> {
         () => ListView(
           physics: const BouncingScrollPhysics(),
           controller: _c.scrollC,
-          padding:
-              EdgeInsets.only(top: mq.height * 0.02, bottom: mq.height * 0.1),
+          padding: EdgeInsets.only(
+            top: MediaQuery.of(context).size.height *
+                0.02, // Using MediaQuery directly
+            bottom: MediaQuery.of(context).size.height *
+                0.1, // Using MediaQuery directly
+          ),
           children: _c.list.map((e) => MessageCard(message: e)).toList(),
         ),
       ),

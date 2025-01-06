@@ -1,6 +1,5 @@
 import 'package:ai_assistant/constants/app_images.dart';
 import 'package:ai_assistant/screens/auth/signin_screen.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
 import 'package:ai_assistant/screens/onBoarding_screen.dart';
 import 'package:ai_assistant/widgets/custom_loading.dart';
@@ -29,7 +28,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    mq = MediaQuery.sizeOf(context);
+    // Replaced mq with MediaQuery for height and width
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: SizedBox(
         width: double.maxFinite,
@@ -43,10 +45,10 @@ class _SplashScreenState extends State<SplashScreen> {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
-                padding: EdgeInsets.all(mq.width * 0.05),
+                padding: EdgeInsets.all(width * 0.05),
                 child: Image.asset(
                   Assets.imagesLogo,
-                  width: mq.width * .4,
+                  width: width * .4,
                 ),
               ),
             ),

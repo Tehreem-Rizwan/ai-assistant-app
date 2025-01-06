@@ -1,8 +1,8 @@
 import 'package:ai_assistant/constants/app_colors.dart';
 import 'package:ai_assistant/constants/app_fonts.dart';
 import 'package:ai_assistant/constants/app_styling.dart';
-import 'package:ai_assistant/screens/auth/forgot_password_screen.dart';
-import 'package:ai_assistant/screens/auth/forgot_password_selection.dart';
+import 'package:ai_assistant/screens/auth/forgot_password_page.dart';
+
 import 'package:ai_assistant/screens/auth/registration_Screen.dart';
 import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/widgets/Custom_Textfield_widget.dart';

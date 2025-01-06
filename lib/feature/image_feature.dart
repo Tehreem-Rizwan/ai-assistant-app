@@ -2,9 +2,10 @@ import 'package:ai_assistant/controllers/image_controller.dart';
 import 'package:ai_assistant/widgets/custom_button.dart';
 import 'package:ai_assistant/widgets/custom_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:lottie/lottie.dart';
 
@@ -18,8 +19,21 @@ class ImageFeature extends StatefulWidget {
 class _ImageFeatureState extends State<ImageFeature> {
   final _c = ImageController();
 
+  void _saveHistory(String query, String result) {
+    FirebaseFirestore.instance.collection('history').add({
+      'query': query,
+      'featureType': 'Image',
+      'result': result,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // Get screen width and height using MediaQuery
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -56,10 +70,10 @@ class _ImageFeatureState extends State<ImageFeature> {
         body: ListView(
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(
-              top: mq.height * 0.02,
-              bottom: mq.height * 0.1,
-              left: mq.width * 0.04,
-              right: mq.width * 0.04),
+              top: screenHeight * 0.02,
+              bottom: screenHeight * 0.1,
+              left: screenWidth * 0.04,
+              right: screenWidth * 0.04),
           children: [
             TextFormField(
               controller: _c.textC,
@@ -75,15 +89,15 @@ class _ImageFeatureState extends State<ImageFeature> {
                       borderRadius: BorderRadius.all(Radius.circular(10)))),
             ),
             Container(
-                height: mq.height * 0.5,
-                margin: EdgeInsets.symmetric(vertical: mq.height * .015),
+                height: screenHeight * 0.5,
+                margin: EdgeInsets.symmetric(vertical: screenHeight * .015),
                 alignment: Alignment.center,
                 child: Obx(() => _aiImage())),
             Obx(() => _c.imageList.isEmpty
                 ? const SizedBox()
                 : SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(bottom: mq.height * .03),
+                    padding: EdgeInsets.only(bottom: screenHeight * .03),
                     physics: const BouncingScrollPhysics(),
                     child: Wrap(
                       spacing: 10,
@@ -123,7 +137,7 @@ class _ImageFeatureState extends State<ImageFeature> {
       child: switch (_c.status.value) {
         Status.none => Lottie.asset(
             "assets/lottie/ai_play.json",
-            height: mq.height * 0.3,
+            height: MediaQuery.of(context).size.height * 0.3,
           ),
         Status.complete => CachedNetworkImage(
             imageUrl: _c.url.value,

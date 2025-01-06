@@ -1,7 +1,6 @@
 import 'package:ai_assistant/main.dart';
 import 'package:ai_assistant/screens/auth/signin_screen.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
-import 'package:ai_assistant/screens/home_page.dart';
+
 import 'package:ai_assistant/screens/model/onboard.dart';
 import 'package:ai_assistant/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +35,12 @@ class OnBoardingScreen extends StatelessWidget {
                 children: [
                   Lottie.asset(
                     "assets/lottie/${list[ind].lottie}.json",
-                    height: mq.height * 0.6,
-                    width: isLast ? mq.width * 0.7 : null,
+                    height: MediaQuery.of(context).size.height *
+                        0.6, // Replaced mq.height
+                    width: isLast
+                        ? MediaQuery.of(context).size.width *
+                            0.7 // Replaced mq.width
+                        : null,
                     repeat: true,
                   ),
                   Text(list[ind].title,
@@ -46,10 +49,12 @@ class OnBoardingScreen extends StatelessWidget {
                           fontWeight: FontWeight.w900,
                           letterSpacing: 0.5)),
                   SizedBox(
-                    height: mq.height * 0.015,
+                    height: MediaQuery.of(context).size.height *
+                        0.015, // Replaced mq.height
                   ),
                   SizedBox(
-                    height: mq.height * 0.07,
+                    height: MediaQuery.of(context).size.height *
+                        0.07, // Replaced mq.height
                     child: Text(list[ind].subtitle,
                         textAlign: TextAlign.center,
                         style: TextStyle(

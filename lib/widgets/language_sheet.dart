@@ -1,11 +1,8 @@
 import 'dart:developer';
 
 import 'package:ai_assistant/controllers/translate_controller.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 class LanguageSheet extends StatefulWidget {
   final TranslateController c;
@@ -22,10 +19,16 @@ class _LanguageSheetState extends State<LanguageSheet> {
 
   @override
   Widget build(BuildContext context) {
+    // Get screen width and height using MediaQuery
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Container(
-      height: mq.height * .5,
+      height: screenHeight * .5,
       padding: EdgeInsets.only(
-          left: mq.width * .04, right: mq.width * .04, top: mq.height * .02),
+          left: screenWidth * .04,
+          right: screenWidth * .04,
+          top: screenHeight * .02),
       decoration: BoxDecoration(
           color: Theme.of(context).scaffoldBackgroundColor,
           borderRadius: const BorderRadius.only(
@@ -56,7 +59,7 @@ class _LanguageSheetState extends State<LanguageSheet> {
                 return ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: list.length,
-                  padding: EdgeInsets.only(top: mq.height * .02, left: 6),
+                  padding: EdgeInsets.only(top: screenHeight * .02, left: 6),
                   itemBuilder: (ctx, i) {
                     return InkWell(
                       onTap: () {
@@ -65,7 +68,7 @@ class _LanguageSheetState extends State<LanguageSheet> {
                         Get.back();
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(bottom: mq.height * .02),
+                        padding: EdgeInsets.only(bottom: screenHeight * .02),
                         child: Text(list[i]),
                       ),
                     );

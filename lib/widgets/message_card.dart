@@ -12,6 +12,11 @@ class MessageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const r = Radius.circular(15);
+
+    // Get screen width and height using MediaQuery
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return message.msgType == MessageType.bot
         ? Row(
             children: [
@@ -26,11 +31,12 @@ class MessageCard extends StatelessWidget {
                     width: 24,
                   )),
               Container(
-                constraints: BoxConstraints(maxWidth: mq.width * 0.6),
+                constraints: BoxConstraints(maxWidth: screenWidth * 0.6),
                 margin: EdgeInsets.only(
-                    bottom: mq.height * 0.02, left: mq.width * 0.02),
+                    bottom: screenHeight * 0.02, left: screenWidth * 0.02),
                 padding: EdgeInsets.symmetric(
-                    vertical: mq.height * 0.01, horizontal: mq.width * 0.02),
+                    vertical: screenHeight * 0.01,
+                    horizontal: screenWidth * 0.02),
                 decoration: BoxDecoration(
                     border: Border.all(color: Theme.of(context).lightTextColor),
                     borderRadius: BorderRadius.only(
@@ -56,11 +62,12 @@ class MessageCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                constraints: BoxConstraints(maxWidth: mq.width * 0.6),
+                constraints: BoxConstraints(maxWidth: screenWidth * 0.6),
                 margin: EdgeInsets.only(
-                    bottom: mq.height * 0.02, right: mq.width * 0.02),
+                    bottom: screenHeight * 0.02, right: screenWidth * 0.02),
                 padding: EdgeInsets.symmetric(
-                    vertical: mq.height * 0.01, horizontal: mq.width * 0.02),
+                    vertical: screenHeight * 0.01,
+                    horizontal: screenWidth * 0.02),
                 decoration: BoxDecoration(
                     border: Border.all(color: Theme.of(context).lightTextColor),
                     borderRadius: BorderRadius.only(

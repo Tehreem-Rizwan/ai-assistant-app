@@ -1,5 +1,4 @@
 import 'package:ai_assistant/screens/helper/ad_helper.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/model/home_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -12,13 +11,19 @@ class HomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Animate.restartOnHotReload = true;
+
+    // Getting screen width and height using MediaQuery
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
       color: Colors.blue.withOpacity(0.2),
       elevation: 0,
-      margin: EdgeInsets.only(bottom: mq.height * 0.02),
+      margin:
+          EdgeInsets.only(bottom: screenHeight * 0.02), // Using screenHeight
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
@@ -31,7 +36,7 @@ class HomeCard extends StatelessWidget {
                     Transform.scale(
                       scale: homeType == HomeType.aiImage ? 0.7 : 1.0,
                       child: SizedBox(
-                        width: mq.width * 0.3,
+                        width: screenWidth * 0.3, // Using screenWidth
                         child: Lottie.asset("assets/lottie/${homeType.lottie}"),
                       ),
                     ),
@@ -63,7 +68,7 @@ class HomeCard extends StatelessWidget {
                     Transform.scale(
                       scale: homeType == HomeType.aiImage ? 0.7 : 1.0,
                       child: SizedBox(
-                        width: mq.width * 0.3,
+                        width: screenWidth * 0.3, // Using screenWidth
                         child: Lottie.asset("assets/lottie/${homeType.lottie}"),
                       ),
                     ),
