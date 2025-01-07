@@ -1,6 +1,5 @@
 import 'package:ai_assistant/constants/app_images.dart';
 import 'package:ai_assistant/main.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
