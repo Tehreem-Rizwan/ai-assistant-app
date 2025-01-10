@@ -39,6 +39,12 @@ class HistoryScreen extends StatelessWidget {
             return const Center(child: Text('No history found.'));
           }
           final historyDocs = snapshot.data!.docs;
+
+          // Debugging: Print each document data
+          for (var doc in historyDocs) {
+            print(doc.data());
+          }
+
           return ListView.builder(
             itemCount: historyDocs.length,
             itemBuilder: (context, index) {
@@ -110,7 +116,7 @@ class ChatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat Detail')),
+      appBar: AppBar(title: const Text('Chat Details')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -126,8 +132,7 @@ class ChatDetailScreen extends StatelessWidget {
             const SizedBox(height: 16.0),
             Text("Feature: ${history.featureType}"),
             const SizedBox(height: 16.0),
-            Text("Response: ${history.result}"),
-            // Add more details if necessary
+            Text("Result: ${history.result}"),
           ],
         ),
       ),

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class HistoryModel {
   final String query;
-  final String featureType; // chatbot, image, or translation
+  final String featureType;
   final String result;
-  final Timestamp timestamp; // timestamp to store the time
+  final Timestamp timestamp;
 
   HistoryModel({
     required this.query,
@@ -13,18 +13,21 @@ class HistoryModel {
     required this.timestamp,
   });
 
-  // Convert Firestore Document to HistoryModel
+  // Factory constructor to create a HistoryModel from Firestore data
   factory HistoryModel.fromFirestore(DocumentSnapshot doc) {
-    Map data = doc.data() as Map;
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+
+    // Ensure all fields are extracted with defaults if null
     return HistoryModel(
       query: data['query'] ?? '',
       featureType: data['featureType'] ?? '',
       result: data['result'] ?? '',
-      timestamp: data['timestamp'] ?? Timestamp.now(),
+      timestamp: data['timestamp'] ??
+          Timestamp.now(), // Default to current time if no timestamp
     );
   }
 
-  // Convert HistoryModel to Firestore Document format
+  // Convert the HistoryModel back to a Map to save in Firestore
   Map<String, dynamic> toMap() {
     return {
       'query': query,
