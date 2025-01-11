@@ -1,6 +1,5 @@
 import 'package:ai_assistant/controllers/chat_controller.dart';
 import 'package:ai_assistant/main.dart';
-import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/widgets/message_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';

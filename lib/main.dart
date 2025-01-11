@@ -1,3 +1,4 @@
+import 'package:ai_assistant/controllers/auth_controller.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
 import 'package:ai_assistant/screens/home_page.dart';
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthController authController = Get.put(AuthController());
+    authController.decideRoute();
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         themeMode: Pref.defaultTheme,
