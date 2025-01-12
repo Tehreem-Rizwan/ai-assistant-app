@@ -1,7 +1,9 @@
+import 'package:ai_assistant/constants/app_colors.dart';
 import 'package:ai_assistant/screens/auth/signin_screen.dart';
 import 'package:ai_assistant/screens/helper/global.dart';
 import 'package:ai_assistant/screens/helper/pref.dart';
 import 'package:ai_assistant/screens/model/home_type.dart';
+import 'package:ai_assistant/screens/profile/profile_settings_screen.dart';
 import 'package:ai_assistant/widgets/home_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -71,9 +73,12 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text('Menu',
-                  style: TextStyle(color: Colors.white, fontSize: 24)),
+              decoration: BoxDecoration(color: kTertiaryColor),
+              child: Text('AI Assistant',
+                  style: TextStyle(
+                      color: kSecondaryColor,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold)),
             ),
             ListTile(
               leading: Icon(Icons.history),
@@ -82,6 +87,17 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HistoryScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Profile Settings'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileSettingsScreen()),
                 );
               },
             ),

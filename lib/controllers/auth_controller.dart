@@ -35,7 +35,7 @@ class AuthController extends GetxController {
           .get()
           .then((value) {
         if (value.exists) {
-          Get.to(() => HomePage());
+          Get.to(() => ProfileSettingsScreen());
         } else {
           Get.to(() => ProfileSettingsScreen());
         }
