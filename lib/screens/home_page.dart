@@ -104,8 +104,19 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Logout'),
-              onTap: () {
-                signOut();
+              onTap: () async {
+                try {
+                  await FirebaseAuth.instance.signOut();
+                  Get.offAll(() => SigninScreen(
+                      userEmail:
+                          'tehreemrizwan30@gmail.com')); // Navigate to the login screen
+                } catch (e) {
+                  Get.snackbar(
+                    'Error',
+                    'Failed to sign out. Please try again.',
+                    snackPosition: SnackPosition.BOTTOM,
+                  );
+                }
               },
             ),
           ],

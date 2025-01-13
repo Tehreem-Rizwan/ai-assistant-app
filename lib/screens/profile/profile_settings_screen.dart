@@ -1,7 +1,7 @@
 import 'dart:io';
-
 import 'package:ai_assistant/constants/app_colors.dart';
 import 'package:ai_assistant/constants/app_styling.dart';
+import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/widgets/Custom_Textfield_widget.dart';
 import 'package:ai_assistant/widgets/Custom_text_widget.dart';
 import 'package:ai_assistant/widgets/custom_button.dart';
@@ -26,6 +26,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   TextEditingController phoneController = TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? selectedImage;
+  String? imageUrl; // New state variable
   bool isLoading = false;
 
   @override
@@ -45,6 +46,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         nameController.text = data?['name'] ?? '';
         emailController.text = data?['email'] ?? '';
         phoneController.text = data?['phone'] ?? '';
+        if (data?['image'] != null && data!['image'].isNotEmpty) {
+          imageUrl = data['image']; // Store the image URL
+        }
       });
     }
   }
@@ -54,8 +58,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     var reference = FirebaseStorage.instance.ref().child("users/$fileName");
     UploadTask uploadTask = reference.putFile(image);
     TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
-    String imageUrl = await taskSnapshot.ref.getDownloadURL();
-    return imageUrl;
+    return await taskSnapshot.ref.getDownloadURL();
   }
 
   Future<void> storeUserInfo() async {
@@ -74,7 +77,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     setState(() {
       isLoading = false;
     });
-    Get.to(() => const ProfileSettingsScreen());
+    Get.to(() => const HomePage());
   }
 
   void pickImage(ImageSource source) async {
@@ -89,55 +92,76 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "Profile Settings",
+          style: TextStyle(color: Colors.blue),
+        ),
+        automaticallyImplyLeading: true, // Enables the menu icon for the drawer
+        actions: [
+          IconButton(
+            color: kTertiaryColor,
+            padding: const EdgeInsets.only(right: 10),
+            onPressed: () => {Get.back()},
+            icon: Icon(Icons.arrow_back),
+          ),
+        ],
+      ),
       backgroundColor: kWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
           child: Column(
             children: [
-              InkWell(
-                onTap: () => pickImage(ImageSource.gallery),
-                child: selectedImage == null
-                    ? Container(
-                        width: w(context, 120),
-                        height: h(context, 120),
-                        margin: const EdgeInsets.only(bottom: 20),
-                        decoration: BoxDecoration(
-                          color: kGreyColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Icon(Icons.camera_alt,
-                              size: 40, color: kWhiteColor),
-                        ),
-                      )
-                    : Container(
-                        width: w(context, 120),
-                        height: h(context, 120),
-                        margin: const EdgeInsets.only(bottom: 20),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: FileImage(selectedImage!),
-                            fit: BoxFit.cover,
-                          ),
-                          color: kGreyColor,
-                          shape: BoxShape.circle,
-                        ),
+              Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  InkWell(
+                    onTap: () => pickImage(ImageSource.gallery),
+                    child: Container(
+                      width: w(context, 120),
+                      height: h(context, 120),
+                      margin: const EdgeInsets.only(bottom: 20),
+                      decoration: BoxDecoration(
+                        image: selectedImage != null
+                            ? DecorationImage(
+                                image: FileImage(selectedImage!),
+                                fit: BoxFit.cover,
+                              )
+                            : imageUrl != null
+                                ? DecorationImage(
+                                    image: NetworkImage(imageUrl!),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
+                        color: kGreyColor,
+                        shape: BoxShape.circle,
                       ),
+                      child: selectedImage == null
+                          ? Center(
+                              child: Icon(Icons.camera_alt,
+                                  size: 40, color: kWhiteColor),
+                            )
+                          : null,
+                    ),
+                  ),
+                ],
               ),
-              if (nameController.text.isNotEmpty)
-                CustomText(
-                  text: nameController.text,
-                  size: 18,
-                  weight: FontWeight.bold,
-                  color: kBlackyColor,
-                ),
-              if (emailController.text.isNotEmpty)
-                CustomText(
-                  text: emailController.text,
-                  size: 16,
-                  color: kBlackyColor,
-                ),
+              CustomText(
+                text: nameController.text.isNotEmpty
+                    ? nameController.text
+                    : 'Your Name',
+                size: 18,
+                weight: FontWeight.bold,
+                color: kBlackyColor,
+              ),
+              CustomText(
+                text: emailController.text.isNotEmpty
+                    ? emailController.text
+                    : 'Your Email',
+                size: 16,
+                color: kBlackyColor,
+              ),
               SizedBox(height: h(context, 25)),
               buildCustomTextField(
                   'Username', nameController, 'Enter username'),
