@@ -1,3 +1,4 @@
+import 'package:ai_assistant/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../../constants/app_colors.dart';
@@ -8,8 +9,8 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   final bool isIcon;
-  final bool hasError; // New property to indicate error state
-  final String? errorText; // New property for error message
+  final bool hasError;
+  final String? errorText;
 
   const CustomTextField({
     Key? key,
@@ -18,8 +19,8 @@ class CustomTextField extends StatefulWidget {
     this.isIcon = false,
     this.onChanged,
     this.obscureText = false,
-    this.hasError = false, // Default value
-    this.errorText, // Default value is null
+    this.hasError = false,
+    this.errorText,
   }) : super(key: key);
 
   @override
@@ -46,9 +47,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             color: kSecondaryColor,
             borderRadius: BorderRadius.circular(8),
             border: Border.all(
-              color: widget.hasError
-                  ? Colors.red
-                  : kWhite12Color, // Change border color
+              color: widget.hasError ? Colors.red : kWhite12Color,
             ),
           ),
           child: TextField(
@@ -58,7 +57,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             obscuringCharacter: '*',
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: const TextStyle(color: Color(0xffBDBDBD)),
+              hintStyle: TextStyle(color: Theme.of(context).lightTextColor),
               border: InputBorder.none,
               suffixIcon: widget.isIcon
                   ? IconButton(
@@ -76,16 +75,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ),
           ),
         ),
-        // Display error message if exists
         if (widget.hasError && widget.errorText != null)
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: Text(
               widget.errorText!,
-              style: TextStyle(
-                color: Colors.red,
-                fontSize: 12,
-              ),
+              style: TextStyle(color: Colors.red, fontSize: 12),
             ),
           ),
       ],
@@ -97,7 +92,6 @@ class CustomTextField2 extends StatefulWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
   final String hintText;
-
   final bool obscureText;
   final bool isIcon;
   final TextStyle? style;
@@ -136,7 +130,7 @@ class _CustomTextField2State extends State<CustomTextField2> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
-        color: kGreyLightColor,
+        color: kSecondaryColor,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: kWhite12Color),
       ),
@@ -144,15 +138,14 @@ class _CustomTextField2State extends State<CustomTextField2> {
         controller: widget.controller,
         onChanged: widget.onChanged,
         obscureText: widget.isIcon ? _isObscure : false,
-        obscuringCharacter:
-            '*', // Obscuring character if obscureText is enabled
-        style: widget.style, // Use custom text style if provided
-        textAlign: widget.textAlign ?? TextAlign.left, // Default to left
+        obscuringCharacter: '*',
+        style: widget.style,
+        textAlign: widget.textAlign ?? TextAlign.left,
         keyboardType: widget.keyboardType ?? TextInputType.text,
-        inputFormatters: widget.inputFormatters, // Custom input formatters
+        inputFormatters: widget.inputFormatters,
         decoration: InputDecoration(
           hintText: widget.hintText,
-          hintStyle: const TextStyle(color: Color(0xffBDBDBD)),
+          hintStyle: TextStyle(color: Theme.of(context).lightTextColor),
           border: InputBorder.none,
           suffixIcon: widget.isIcon
               ? IconButton(
@@ -176,7 +169,6 @@ class _CustomTextField2State extends State<CustomTextField2> {
 class CustomTextField3 extends StatefulWidget {
   final TextEditingController controller;
   final ValueChanged<String>? onChanged;
-
   final String hintText;
   final bool obscureText;
   final bool isIcon;
@@ -191,10 +183,10 @@ class CustomTextField3 extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomTextFieldState createState() => _CustomTextFieldState();
+  _CustomTextField3State createState() => _CustomTextField3State();
 }
 
-class _CustomTextField3State extends State<CustomTextField> {
+class _CustomTextField3State extends State<CustomTextField3> {
   bool _isObscure = false;
 
   @override
@@ -209,10 +201,10 @@ class _CustomTextField3State extends State<CustomTextField> {
       controller: widget.controller,
       onChanged: widget.onChanged,
       obscureText: widget.isIcon ? _isObscure : false,
-      obscuringCharacter: '*', // Here we set the obscuring character to '*'
+      obscuringCharacter: '*',
       decoration: InputDecoration(
         hintText: widget.hintText,
-        hintStyle: const TextStyle(color: Color(0xffBDBDBD)),
+        hintStyle: TextStyle(color: Theme.of(context).lightTextColor),
         border: InputBorder.none,
       ),
     );

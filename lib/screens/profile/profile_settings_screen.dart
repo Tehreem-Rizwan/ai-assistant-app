@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:ai_assistant/constants/app_colors.dart';
 import 'package:ai_assistant/constants/app_styling.dart';
+import 'package:ai_assistant/main.dart';
 import 'package:ai_assistant/screens/home_page.dart';
 import 'package:ai_assistant/widgets/Custom_Textfield_widget.dart';
 import 'package:ai_assistant/widgets/Custom_text_widget.dart';
@@ -95,19 +96,10 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
       appBar: AppBar(
         title: Text(
           "Profile Settings",
-          style: TextStyle(color: Colors.blue),
+          style: TextStyle(color: kTertiaryColor),
         ),
         automaticallyImplyLeading: true, // Enables the menu icon for the drawer
-        actions: [
-          IconButton(
-            color: kTertiaryColor,
-            padding: const EdgeInsets.only(right: 10),
-            onPressed: () => {Get.back()},
-            icon: Icon(Icons.arrow_back),
-          ),
-        ],
       ),
-      backgroundColor: kWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, top: 60),
@@ -201,11 +193,10 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomText(
-            text: label,
-            size: 14,
-            weight: FontWeight.w700,
-            color: kBlackyColor,
-          ),
+              text: label,
+              size: 14,
+              weight: FontWeight.w700,
+              color: Theme.of(context).lightTextColor),
           SizedBox(height: h(context, 8)),
           CustomTextField(
             controller: controller,

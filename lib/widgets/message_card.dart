@@ -6,7 +6,9 @@ import 'package:ai_assistant/screens/model/message.dart';
 
 class MessageCard extends StatelessWidget {
   final Message message;
-  const MessageCard({super.key, required this.message});
+  final String? profileImageUrl; // Add this parameter
+
+  const MessageCard({super.key, required this.message, this.profileImageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +87,28 @@ class MessageCard extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 18,
                 backgroundColor: Colors.white,
-                child: Icon(
-                  Icons.person,
-                  color: Colors.blue,
-                ),
+                child: profileImageUrl != null && profileImageUrl!.isNotEmpty
+                    ? ClipOval(
+                        child: Image.network(
+                          profileImageUrl!,
+                          fit: BoxFit.cover,
+                          width: 36,
+                          height: 36,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(
+                              Icons.person,
+                              color: Colors.blue,
+                            );
+                          },
+                        ),
+                      )
+                    : Icon(
+                        Icons.person,
+                        color: Colors.blue,
+                      ),
               ),
               const SizedBox(width: 6),
             ],
